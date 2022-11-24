@@ -3,12 +3,11 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 16,
-    padding: 16,
     backgroundColor: 'white',
   },
   header: {
     marginBottom: 16,
+    marginTop: 16,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
@@ -28,20 +27,21 @@ const styles = StyleSheet.create({
     height: 20,
     marginTop: 3,
   },
-  checkImg: {
-    width: 16,
-    height: 16,
-    marginTop: 3,
-  },
+  // checkImg: {
+  //   width: 16,
+  //   height: 16,
+  //   marginTop: 3,
+  //   backgroundcolor: '#E8E8E8',
+  // },
   check: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginTop: 30,
   },
   text: {
-    marginLeft: 10,
     color: '#666666',
     alignSelf: 'flex-start',
+    marginTop: 4,
     fontSize: 14,
     fontWeight: '400',
   },

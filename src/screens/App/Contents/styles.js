@@ -3,12 +3,11 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 16,
-    padding: 16,
     backgroundColor: 'white',
   },
   header: {
     marginBottom: 16,
+    marginTop: 16,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
@@ -24,11 +23,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   cont: {
-    marginTop: 8,
+    marginTop: 16,
   },
   contentBox: {
     height: 240,
     width: 325,
+    borderRadius: 8,
   },
   dHeader: {
     marginLeft: 10,

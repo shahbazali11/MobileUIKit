@@ -3,46 +3,43 @@ import styles from './styles';
 
 import React, {useState} from 'react';
 
-const Contents = () => {
+const Contents = ({route, navigation}) => {
   const [search, setSearch] = useState('');
+  const {source, head, time, detail} = route.params;
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Text style={{color: '#5DB075', fontSize: 16}}>Back</Text>
-        </TouchableOpacity>
-        <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
-          Contents
-        </Text>
-        <TouchableOpacity>
-          <Text style={{color: '#5DB075', fontSize: 16}}>Filter</Text>
-        </TouchableOpacity>
-      </View>
-      <TextInput
-        style={styles.inputcontainer}
-        onChangeText={setSearch}
-        value={search}
-        underlineColorAndroid="transparent"
-        placeholder="Search"
-        keyboardType="ascii-capable"
-      />
-      <View style={styles.cont}>
-        <Image
-          source={require('../../../assets/Content_Block.png')}
-          style={styles.contentBox}
+      <View style={{padding: 16}}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.navigate('Feed')}>
+            <Text style={{color: '#5DB075', fontSize: 16}}>Back</Text>
+          </TouchableOpacity>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
+            Contents
+          </Text>
+          <TouchableOpacity>
+            <Text style={{color: '#5DB075', fontSize: 16}}>Filter</Text>
+          </TouchableOpacity>
+        </View>
+        <TextInput
+          style={styles.inputcontainer}
+          onChangeText={setSearch}
+          value={search}
+          underlineColorAndroid="transparent"
+          placeholder="Search"
+          keyboardType="ascii-capable"
         />
-      </View>
-      <View>
         <View style={styles.cont}>
-          <Text style={{fontSize: 16, fontWeight: '600', color: 'black'}}>
-            Header
-          </Text>
-          <Text>
-            "He'll want to use your yacht, and I don't want this thing smelling
-            like fish."
-          </Text>
-          <Text style={{color: '#BDBDBD'}}>timer</Text>
+          <Image source={source} style={styles.contentBox} />
+        </View>
+        <View>
+          <View style={styles.cont}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: 'black'}}>
+              {head}
+            </Text>
+            <Text>{detail}</Text>
+            <Text style={{color: '#BDBDBD'}}>{time}</Text>
+          </View>
         </View>
       </View>
     </View>
