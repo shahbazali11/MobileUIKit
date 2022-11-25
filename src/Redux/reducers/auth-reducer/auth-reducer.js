@@ -1,4 +1,4 @@
-import * as TYPES from '../../../types/auth-types/auth-types';
+import * as TYPES from '../../types/auth-types/auth-types';
 
 const initialState = {
   name: '',
