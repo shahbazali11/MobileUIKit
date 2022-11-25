@@ -2,10 +2,25 @@ import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 
-const Login = () => {
+//redux
+import {useSelector} from 'react-redux';
+
+const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+  function handleNavigation(screenName) {
+    navigation.navigate(screenName);
+  }
+
+  //
+  const data = useSelector(state => state?.userReducer.userData);
+
+  const test = {
+    email,
+    password,
+  };
 
   return (
     <View style={styles.container}>
@@ -58,7 +73,16 @@ const Login = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            if (email == data.email && password == data.password) {
+              handleNavigation('ProfilePost');
+            } else {
+              alert(
+                "Your Email and Password doesn't match. Please enter the valid Credentials",
+              );
+            }
+          }}>
           <View style={styles.submit}>
             <Text style={{color: '#FFFFFF', fontSize: 16, fontWeight: '600'}}>
               Log In

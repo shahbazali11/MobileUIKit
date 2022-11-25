@@ -15,14 +15,14 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import ProfilePost from './src/screens/App/ProfilePost/ProfilePost';
 import ProfilePhoto from './src/screens/App/ProfilePhoto/ProfilePhoto';
 import Messages from './src/screens/App/Messages/Messages';
-import BottomNavigator from './src/BottomNavigator/BottomNavigator';
+import BottomNavigator from './src/navigation/bottom-navigator/bottom-navigator';
 //
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 //redux
 import {Provider} from 'react-redux';
-import store from './src/Redux/store';
+import store from './src/redux/store';
 
 const App = () => {
   const Stack = createNativeStackNavigator();

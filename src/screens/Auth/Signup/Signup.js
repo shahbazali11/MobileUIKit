@@ -4,16 +4,10 @@ import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
 
 //redux
-import {useSelector, useDispatch} from 'react-redux';
-import {
-  setName,
-  setEmail,
-  setPassword,
-  setUserData,
-} from '../../../Redux/Action/userAction/userAction';
+import {useDispatch} from 'react-redux';
+import {setUserData} from '../../../redux/actions/auth-action/auth-action';
 
 const Signup = ({navigation}) => {
-  const userData = useSelector(state => state?.userReducer);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -31,7 +25,6 @@ const Signup = ({navigation}) => {
     email,
     password,
   };
-  //console.log(data);
   return (
     <View style={styles.container}>
       <View style={{padding: 16}}>
@@ -95,32 +88,32 @@ const Signup = ({navigation}) => {
             onPress={() => {
               setSecureTextEntry(!secureTextEntry);
             }}>
-            <Text style={{color: '#5DB075', fontSize: 16, fontWeight: '500'}}>
+            <Text
+              style={{
+                color: '#5DB075',
+                fontSize: 16,
+                fontWeight: '500',
+              }}>
               {secureTextEntry ? 'Show' : 'Hide'}
             </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.check}>
-          <CheckBox
-            value={isSelected}
-            onValueChange={setSelection}
-            // style={styles.checkImg}
-
-            // style={styles.checkbox}
-          />
-          {/* <TouchableOpacity>
-            <Image
-              source={require('../../../assets/CheckBox.png')}
-              style={styles.checkImg}
-              resizeMode={'contain'}
-            />
-          </TouchableOpacity> */}
+          <CheckBox value={isSelected} onValueChange={setSelection} />
           <Text style={styles.text}>
             I would like to receive your newsletter and other promotional
             information.
           </Text>
         </View>
-        <TouchableOpacity onPress={() => dispatch(setUserData(data))}>
+        <TouchableOpacity
+          onPress={() => {
+            if (name && email && password) {
+              dispatch(setUserData(data));
+              handleNavigation('Login');
+            } else {
+              alert('Please enter the fields');
+            }
+          }}>
           <View style={styles.submit}>
             <Text style={{color: '#FFFFFF', fontSize: 16, fontWeight: '600'}}>
               Sign Up

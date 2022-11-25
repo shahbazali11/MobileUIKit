@@ -12,9 +12,8 @@ const options = [
 ];
 
 const ProfilePost = ({navigation}) => {
-  const data = useSelector(state => state);
-  console.log('asfj fahsfj', data);
-
+  const data = useSelector(state => state?.userReducer.userData);
+  console.log(data);
   const [hotDeals, setHotDeals] = useState([
     {
       name: 'Item #1 Name Goes Here',
@@ -95,9 +94,6 @@ const ProfilePost = ({navigation}) => {
           initial={0}
           onPress={() => navigation.navigate('ProfilePhoto')}
         />
-        {/* <Text>Posts</Text>
-        <Text>Photos</Text>
-        <View style={styles.switchSelector}></View> */}
       </View>
       <FlatList
         pagingEnabled={true}

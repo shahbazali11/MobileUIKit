@@ -6,13 +6,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import ProfilePost from '../screens/App/ProfilePost/ProfilePost';
-import Expenses from '../screens/App/Expenses/Expenses';
-import Search from '../screens/App/Search/Search';
-import Feed from '../screens/App/Feed/Feed';
-import Market from '../screens/App/Market/Market';
+import ProfilePost from '../../screens/App/ProfilePost/ProfilePost';
+import Expenses from '../../screens/App/Expenses/Expenses';
+import Search from '../../screens/App/Search/Search';
+import Feed from '../../screens/App/Feed/Feed';
+import Market from '../../screens/App/Market/Market';
 
-import Signup from '../screens/Auth/Signup/Signup';
+import Signup from '../../screens/Auth/Signup/Signup';
 
 const Tab = createBottomTabNavigator();
 
