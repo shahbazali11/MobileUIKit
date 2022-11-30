@@ -15,12 +15,7 @@ const Login = ({navigation}) => {
   }
 
   //
-  const data = useSelector(state => state?.userReducer.userData);
-
-  const test = {
-    email,
-    password,
-  };
+  const data = useSelector(state => state?.userReducer.signupObject);
 
   return (
     <View style={styles.container}>
@@ -76,7 +71,7 @@ const Login = ({navigation}) => {
         <TouchableOpacity
           onPress={() => {
             if (email == data.email && password == data.password) {
-              handleNavigation('ProfilePost');
+              handleNavigation('Dummy');
             } else {
               alert(
                 "Your Email and Password doesn't match. Please enter the valid Credentials",

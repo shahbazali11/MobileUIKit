@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, TextInput, Image} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  Alert,
+} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
 
@@ -19,11 +26,28 @@ const Signup = ({navigation}) => {
   function handleNavigation(screenName) {
     navigation.navigate(screenName);
   }
-
-  const data = {
-    name,
-    email,
-    password,
+  //This method will validate the form
+  const validateForms = () => {
+    let response = {message: '', status: false};
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (name === '' || email === '' || password === '') {
+      response = {message: 'Please fill all the fields', status: false};
+    } else if (name.length < 6) {
+      response = {
+        message: 'Name should contain atleast 6 characters',
+        status: false,
+      };
+    } else if (reg.test(email) === false) {
+      response = {message: 'Email is not correct', status: false};
+    } else if (password.length < 8) {
+      response = {
+        message: 'Password should contain atleast 8 characters',
+        status: false,
+      };
+    } else {
+      response = {message: '', status: true};
+    }
+    return response;
   };
   return (
     <View style={styles.container}>
@@ -107,11 +131,17 @@ const Signup = ({navigation}) => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            if (name && email && password) {
+            const validateRes = validateForms();
+            if (validateRes.status) {
+              const data = {
+                name,
+                email,
+                password,
+              };
               dispatch(setUserData(data));
               handleNavigation('Login');
             } else {
-              alert('Please enter the fields');
+              Alert.alert('Please confirm', validateRes.message);
             }
           }}>
           <View style={styles.submit}>

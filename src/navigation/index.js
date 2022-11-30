@@ -15,6 +15,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import ProfilePost from '../../src/screens/App/ProfilePost/ProfilePost';
 import ProfilePhoto from '../../src/screens/App/ProfilePhoto/ProfilePhoto';
 import Messages from '../../src/screens/App/Messages/Messages';
+import Dummy from '../screens/App/dummy/dummy';
 import BottomNavigator from '../../src/navigation/bottom-navigator/bottom-navigator';
 //
 import {NavigationContainer} from '@react-navigation/native';
@@ -32,6 +33,7 @@ const root = () => {
         <Stack.Screen name="Contents" component={Contents} />
         <Stack.Screen name="ProfilePost" component={ProfilePost} />
         <Stack.Screen name="ProfilePhoto" component={ProfilePhoto} />
+        <Stack.Screen name="Dummy" component={Dummy} />
       </Stack.Navigator>
     </NavigationContainer>
   );

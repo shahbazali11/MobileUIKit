@@ -12,8 +12,7 @@ const options = [
 ];
 
 const ProfilePost = ({navigation}) => {
-  const data = useSelector(state => state?.userReducer.userData);
-  console.log(data);
+  const data = useSelector(state => state?.userReducer?.signupObject);
   const [hotDeals, setHotDeals] = useState([
     {
       name: 'Item #1 Name Goes Here',
