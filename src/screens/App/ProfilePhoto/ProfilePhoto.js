@@ -35,16 +35,12 @@ const ProfilePhoto = ({navigation}) => {
         />
       </View>
       <View style={styles.bodyText}>
-        <Text style={{color: 'black', fontSize: 30, fontWeight: '600'}}>
-          Victoria Robertson
-        </Text>
-        <Text style={{color: 'black', fontSize: 16, fontWeight: '600'}}>
-          A mantra goes here
-        </Text>
+        <Text style={styles.detailHText}>Victoria Robertson</Text>
+        <Text style={styles.detailText}>A mantra goes here</Text>
       </View>
       <View style={styles.switch}>
         <SwitchSelector
-          buttonColor="white"
+          buttonColor="#FFFFFF"
           selectedColor="#5DB075"
           borderColor="#F6F6F6"
           textColor="#BDBDBD"

@@ -27,12 +27,6 @@ const styles = StyleSheet.create({
     height: 20,
     marginTop: 3,
   },
-  // checkImg: {
-  //   width: 16,
-  //   height: 16,
-  //   marginTop: 3,
-  //   backgroundcolor: '#E8E8E8',
-  // },
   check: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -57,6 +51,42 @@ const styles = StyleSheet.create({
     marginTop: 16,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  headerText: {
+    color: '#5DB075',
+    fontSize: 16,
+  },
+  headerSText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  inputText: {
+    backgroundColor: '#F6F6F6',
+    marginTop: 16,
+    borderRadius: 8,
+    height: 50,
+    borderColor: '#E8E8E8',
+    borderWidth: 1,
+    padding: 16,
+    width: '80%',
+    marginTop: 0,
+    borderRadius: 0,
+    borderWidth: 0,
+  },
+  showPassword: {
+    alignSelf: 'center',
+    paddingHorizontal: 10,
+  },
+  button: {
+    color: '#5DB075',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  signupButton: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
 

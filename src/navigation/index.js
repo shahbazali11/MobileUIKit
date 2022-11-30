@@ -21,7 +21,7 @@ import BottomNavigator from '../../src/navigation/bottom-navigator/bottom-naviga
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const root = () => {
+const MainNavigation = () => {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
@@ -38,4 +38,4 @@ const root = () => {
     </NavigationContainer>
   );
 };
-export default root;
+export default MainNavigation;

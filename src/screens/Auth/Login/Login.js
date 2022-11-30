@@ -15,15 +15,13 @@ const Login = ({navigation}) => {
   }
 
   //
-  const data = useSelector(state => state?.userReducer.signupObject);
+  const data = useSelector(state => state?.user.signupObject);
 
   return (
     <View style={styles.container}>
       <View style={{padding: 16}}>
         <View style={styles.header}>
-          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
-            Log In
-          </Text>
+          <Text style={styles.headerText}>Log In</Text>
         </View>
         <TextInput
           style={styles.inputcontainer}
@@ -45,24 +43,18 @@ const Login = ({navigation}) => {
             borderWidth: 1,
           }}>
           <TextInput
-            style={[
-              styles.inputcontainer,
-              {width: '80%', marginTop: 0, borderRadius: 0, borderWidth: 0},
-            ]}
+            style={styles.inputText}
             onChangeText={setPassword}
             value={password}
             secureTextEntry={secureTextEntry}
             placeholder="Password"
           />
           <TouchableOpacity
-            style={{
-              alignSelf: 'center',
-              paddingHorizontal: 10,
-            }}
+            style={styles.showPassword}
             onPress={() => {
               setSecureTextEntry(!secureTextEntry);
             }}>
-            <Text style={{color: '#5DB075', fontSize: 16, fontWeight: '500'}}>
+            <Text style={styles.button}>
               {secureTextEntry ? 'Show' : 'Hide'}
             </Text>
           </TouchableOpacity>
@@ -79,16 +71,12 @@ const Login = ({navigation}) => {
             }
           }}>
           <View style={styles.submit}>
-            <Text style={{color: '#FFFFFF', fontSize: 16, fontWeight: '600'}}>
-              Log In
-            </Text>
+            <Text style={styles.LoginButton}>Log In</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={styles.forgot}>
-            <Text style={{color: '#5DB075', fontSize: 16, fontWeight: '600'}}>
-              Forgot your password?
-            </Text>
+            <Text style={styles.button}>Forgot your password?</Text>
           </View>
         </TouchableOpacity>
       </View>

@@ -10,22 +10,20 @@ const FeedHeader = ({source, head, time, detail}) => {
   }
 
   return (
-    <View>
-      <TouchableOpacity
-        style={styles.check}
-        onPress={() => handleNavigation('Contents')}>
-        <Image source={source} style={styles.checkImg} />
-        <View style={styles.details}>
-          <View style={styles.dHeader}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: 'black'}}>
-              {head}
-            </Text>
-            <Text style={{color: '#BDBDBD'}}>{time}</Text>
-          </View>
-          <Text style={styles.text}>{detail}</Text>
+    <TouchableOpacity
+      style={styles.check}
+      onPress={() => handleNavigation('Contents')}>
+      <Image source={source} style={styles.checkImg} />
+      <View style={styles.details}>
+        <View style={styles.dHeader}>
+          <Text style={{fontSize: 16, fontWeight: '600', color: 'black'}}>
+            {head}
+          </Text>
+          <Text style={{color: '#BDBDBD'}}>{time}</Text>
         </View>
-      </TouchableOpacity>
-    </View>
+        <Text style={styles.text}>{detail}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

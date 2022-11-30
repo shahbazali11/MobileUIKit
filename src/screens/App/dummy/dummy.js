@@ -4,12 +4,12 @@ import {useSelector, useDispatch} from 'react-redux';
 import {setProductData} from '../../../redux/actions/product-action/product-action';
 
 const Dummy = () => {
-  const data = useSelector(state => state.productReducer.saveData);
+  const data = useSelector(state => state.product.saveData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setProductData());
   }, []);
-  const dispatch = useDispatch();
   return (
     <View style={styles.mainContainer}>
       <FlatList

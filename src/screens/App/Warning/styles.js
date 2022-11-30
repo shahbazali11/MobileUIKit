@@ -38,6 +38,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#5DB075',
     borderRadius: 100,
   },
+  buttonClickText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  buttonActionText: {
+    color: '#5DB075',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });
 
 export default styles;

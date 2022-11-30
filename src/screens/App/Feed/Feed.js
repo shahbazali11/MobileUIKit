@@ -113,13 +113,11 @@ const Feed = ({navigation}) => {
       <View style={{padding: 16}}>
         <View style={styles.header}>
           <TouchableOpacity>
-            <Text style={{color: '#5DB075', fontSize: 16}}>Back</Text>
+            <Text style={styles.headerText}>Back</Text>
           </TouchableOpacity>
-          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
-            Feed
-          </Text>
+          <Text style={styles.headerSText}>Feed</Text>
           <TouchableOpacity>
-            <Text style={{color: '#5DB075', fontSize: 16}}>Filter</Text>
+            <Text style={styles.headerText}>Filter</Text>
           </TouchableOpacity>
         </View>
         <TextInput

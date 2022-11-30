@@ -77,6 +77,16 @@ const styles = StyleSheet.create({
   details: {
     flexDirection: 'column',
   },
+  detailText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  detailHText: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: '600',
+  },
 });
 
 export default styles;

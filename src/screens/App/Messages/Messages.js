@@ -8,13 +8,11 @@ const Messages = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity>
-          <Text style={{color: '#5DB075', fontSize: 16}}>Back</Text>
+          <Text style={styles.headerText}>Back</Text>
         </TouchableOpacity>
-        <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
-          Messages
-        </Text>
+        <Text style={styles.headerSText}>Messages</Text>
         <TouchableOpacity>
-          <Text style={{color: '#5DB075', fontSize: 16}}>Filter</Text>
+          <Text style={styles.headerText}>Filter</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.show}>

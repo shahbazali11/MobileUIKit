@@ -60,11 +60,9 @@ const Signup = ({navigation}) => {
               resizeMode={'contain'}
             />
           </TouchableOpacity>
-          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
-            Sign Up
-          </Text>
+          <Text style={styles.headerSText}>Sign Up</Text>
           <TouchableOpacity onPress={() => handleNavigation('Login')}>
-            <Text style={{color: '#5DB075', fontSize: 16}}>Login</Text>
+            <Text style={styles.headerText}>Login</Text>
           </TouchableOpacity>
         </View>
 
@@ -95,29 +93,18 @@ const Signup = ({navigation}) => {
             borderWidth: 1,
           }}>
           <TextInput
-            style={[
-              styles.inputcontainer,
-              {width: '80%', marginTop: 0, borderRadius: 0, borderWidth: 0},
-            ]}
+            style={styles.inputText}
             onChangeText={text => setPassword(text)}
             value={password}
             secureTextEntry={secureTextEntry}
             placeholder="Password"
           />
           <TouchableOpacity
-            style={{
-              alignSelf: 'center',
-              paddingHorizontal: 10,
-            }}
+            style={styles.showPassword}
             onPress={() => {
               setSecureTextEntry(!secureTextEntry);
             }}>
-            <Text
-              style={{
-                color: '#5DB075',
-                fontSize: 16,
-                fontWeight: '500',
-              }}>
+            <Text style={styles.button}>
               {secureTextEntry ? 'Show' : 'Hide'}
             </Text>
           </TouchableOpacity>
@@ -145,16 +132,12 @@ const Signup = ({navigation}) => {
             }
           }}>
           <View style={styles.submit}>
-            <Text style={{color: '#FFFFFF', fontSize: 16, fontWeight: '600'}}>
-              Sign Up
-            </Text>
+            <Text style={styles.signupButton}>Sign Up</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={styles.forgot}>
-            <Text style={{color: '#5DB075', fontSize: 16, fontWeight: '600'}}>
-              Forgot your password?
-            </Text>
+            <Text style={styles.button}>Forgot your password?</Text>
           </View>
         </TouchableOpacity>
       </View>

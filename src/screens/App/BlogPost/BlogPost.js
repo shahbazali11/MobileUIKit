@@ -8,7 +8,7 @@ const BlogPost = () => {
       <View>
         <Image
           source={require('../../../assets/BlogImage.png')}
-          style={{height: 196, width: 326, borderRadius: 8}}></Image>
+          style={styles.image}></Image>
         <Text style={styles.title}>Post Title Here...</Text>
         <Text style={styles.author}>Author</Text>
         <Text style={{marginTop: 16}}>

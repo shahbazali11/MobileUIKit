@@ -12,7 +12,7 @@ import {rootSaga} from './saga';
 const PersistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['userReducer', 'productReducer'],
+  whitelist: ['user', 'product'],
   stateReconciler: autoMergeLevel2,
 };
 const pReducer = persistReducer(PersistConfig, rootReducer);

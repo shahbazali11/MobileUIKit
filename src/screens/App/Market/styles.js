@@ -35,6 +35,21 @@ const styles = StyleSheet.create({
   details: {
     width: '80%',
   },
+  headingText: {
+    fontSize: 24,
+    fontWeight: '500',
+    color: 'black',
+    marginTop: 16,
+  },
+  headerText: {
+    color: '#5DB075',
+    fontSize: 16,
+  },
+  headerSText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
 });
 
 export default styles;

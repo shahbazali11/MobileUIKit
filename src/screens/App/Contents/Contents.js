@@ -12,13 +12,11 @@ const Contents = ({route, navigation}) => {
       <View style={{padding: 16}}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.navigate('Feed')}>
-            <Text style={{color: '#5DB075', fontSize: 16}}>Back</Text>
+            <Text style={styles.headerText}>Back</Text>
           </TouchableOpacity>
-          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>
-            Contents
-          </Text>
+          <Text style={styles.headerSText}>Contents</Text>
           <TouchableOpacity>
-            <Text style={{color: '#5DB075', fontSize: 16}}>Filter</Text>
+            <Text style={styles.headerText}>Filter</Text>
           </TouchableOpacity>
         </View>
         <TextInput

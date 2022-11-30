@@ -18,7 +18,6 @@ const Warning = () => {
     <View>
       <Modal
         style={{backgroundColor: '#B6A3B0'}}
-        // transparent={true}
         collapsable
         visible={showWarning}
         animationType="slide"
@@ -36,16 +35,12 @@ const Warning = () => {
           </View>
           <TouchableOpacity>
             <View style={styles.clickMe}>
-              <Text style={{color: '#FFFFFF', fontSize: 16, fontWeight: '600'}}>
-                Click Me
-              </Text>
+              <Text style={styles.buttonClickText}>Click Me</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.action}>
-              <Text style={{color: '#5DB075', fontSize: 16, fontWeight: '600'}}>
-                Secondry Action
-              </Text>
+              <Text style={styles.buttonActionText}>Secondry Action</Text>
             </View>
           </TouchableOpacity>
         </View>

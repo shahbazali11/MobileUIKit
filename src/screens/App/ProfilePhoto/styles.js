@@ -63,6 +63,16 @@ const styles = StyleSheet.create({
     height: 240,
     borderRadius: 8,
   },
+  detailHText: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: '600',
+  },
+  detailText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });
 
 export default styles;

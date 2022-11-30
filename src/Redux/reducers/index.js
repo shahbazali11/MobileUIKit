@@ -3,8 +3,8 @@ import userReducer from './auth-reducer/auth-reducer';
 import {productReducer} from './product-reducer/product-reducer';
 
 const rootReducer = combineReducers({
-  userReducer,
-  productReducer,
+  user: userReducer,
+  product: productReducer,
 });
 
 export default rootReducer;

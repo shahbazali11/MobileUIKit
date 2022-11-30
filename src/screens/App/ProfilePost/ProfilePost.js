@@ -12,7 +12,7 @@ const options = [
 ];
 
 const ProfilePost = ({navigation}) => {
-  const data = useSelector(state => state?.userReducer?.signupObject);
+  const data = useSelector(state => state?.user.signupObject);
   const [hotDeals, setHotDeals] = useState([
     {
       name: 'Item #1 Name Goes Here',
@@ -42,9 +42,7 @@ const ProfilePost = ({navigation}) => {
       <Image source={item.image} style={styles.checkImg} />
       <View style={styles.details}>
         <View style={styles.dHeader}>
-          <Text style={{fontSize: 16, fontWeight: '600', color: 'black'}}>
-            {item.name}
-          </Text>
+          <Text style={styles.detailText}>{item.name}</Text>
           <Text style={{color: '#BDBDBD'}}>{item.price}</Text>
         </View>
       </View>
@@ -73,12 +71,8 @@ const ProfilePost = ({navigation}) => {
         />
       </View>
       <View style={styles.bodyText}>
-        <Text style={{color: 'black', fontSize: 30, fontWeight: '600'}}>
-          Victoria Robertson
-        </Text>
-        <Text style={{color: 'black', fontSize: 16, fontWeight: '600'}}>
-          A mantra goes here
-        </Text>
+        <Text style={styles.detailHText}>Victoria Robertson</Text>
+        <Text style={styles.detailText}>A mantra goes here</Text>
       </View>
       <View style={styles.switch}>
         <SwitchSelector
