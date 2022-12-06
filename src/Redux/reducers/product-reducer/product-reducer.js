@@ -4,14 +4,11 @@ const initialState = {
 };
 
 export const productReducer = (state = initialState, action) => {
-  console.log('Data in Reducer: ', action);
   switch (action.type) {
     case TYPES.PRODUCT_DATA_REQUEST:
-      console.log('Data in Case 1: ', action);
-      return {...state, saveData: action.data};
+      return {...state, saveData: action?.res};
     case TYPES.SET_PRODUCT_DATA:
-      console.log('Data in Case 2: ', action);
-      return {...state, saveData: action.data};
+      return {...state, saveData: action?.res};
     default:
       return {...state};
   }

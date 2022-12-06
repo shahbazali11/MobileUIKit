@@ -16,6 +16,7 @@ import ProfilePost from '../../src/screens/App/ProfilePost/ProfilePost';
 import ProfilePhoto from '../../src/screens/App/ProfilePhoto/ProfilePhoto';
 import Messages from '../../src/screens/App/Messages/Messages';
 import Dummy from '../screens/App/dummy/dummy';
+import DummyProduct from '../screens/App/dummyProduct/dummyProduct';
 import BottomNavigator from '../../src/navigation/bottom-navigator/bottom-navigator';
 //
 import {NavigationContainer} from '@react-navigation/native';
@@ -34,6 +35,7 @@ const MainNavigation = () => {
         <Stack.Screen name="ProfilePost" component={ProfilePost} />
         <Stack.Screen name="ProfilePhoto" component={ProfilePhoto} />
         <Stack.Screen name="Dummy" component={Dummy} />
+        <Stack.Screen name="DummyProduct" component={DummyProduct} />
       </Stack.Navigator>
     </NavigationContainer>
   );
