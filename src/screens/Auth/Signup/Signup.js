@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -10,9 +10,14 @@ import {
 import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
 
+//firebase
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+
 //redux
 import {useDispatch} from 'react-redux';
 import {setUserData} from '../../../redux/actions/auth-action/auth-action';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const Signup = ({navigation}) => {
   const dispatch = useDispatch();
@@ -23,9 +28,20 @@ const Signup = ({navigation}) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [isSelected, setSelection] = useState(false);
 
-  function handleNavigation(screenName) {
+  useEffect(() => {
+    GoogleSignin.configure(
+      {
+        webClientId:
+          '473218954623-81r2mv4imfmbe2ubusdvohtotjvgjpna.apps.googleusercontent.com',
+      },
+      [],
+    );
+  });
+
+  const handleNavigation = screenName => {
     navigation.navigate(screenName);
-  }
+  };
+
   //This method will validate the form
   const validateForms = () => {
     let response = {message: '', status: false};
@@ -49,6 +65,21 @@ const Signup = ({navigation}) => {
     }
     return response;
   };
+
+  //firebase
+  const onGoogleButtonPress = async () => {
+    // Check if your device supports Google Play
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    // Get the users ID token
+    const {idToken} = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  };
+
   return (
     <View style={styles.container}>
       <View style={{padding: 16}}>
@@ -80,18 +111,7 @@ const Signup = ({navigation}) => {
           placeholder="Email"
           keyboardType="ascii-capable"
         />
-        <View
-          style={{
-            backgroundColor: '#F6F6F6',
-            flexDirection: 'row',
-            borderRadius: 8,
-            height: 50,
-            marginTop: 16,
-            alignItems: 'center',
-            overflow: 'hidden',
-            borderColor: '#E8E8E8',
-            borderWidth: 1,
-          }}>
+        <View style={styles.passwordTextInput}>
           <TextInput
             style={styles.inputText}
             onChangeText={text => setPassword(text)}
@@ -133,6 +153,53 @@ const Signup = ({navigation}) => {
           }}>
           <View style={styles.submit}>
             <Text style={styles.signupButton}>Sign Up</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            onGoogleButtonPress().then(response => {
+              console.log(response.user);
+              dispatch(setUserData(response.user));
+              handleNavigation('Login');
+            });
+            const validateRes = validateForms();
+            if (validateRes.status) {
+              const data = {
+                name,
+                email,
+                password,
+              };
+              dispatch(setUserData(data));
+              handleNavigation('Login');
+            } else {
+              Alert.alert('Please confirm', validateRes.message);
+            }
+          }}
+          style={styles.googleFbIcon}>
+          <Icon name="google" size={30} color="white" />
+          <View style={styles.submitGoogleFb}>
+            <Text style={styles.signupButton}>Sign Up with Google</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            const validateRes = validateForms();
+            if (validateRes.status) {
+              const data = {
+                name,
+                email,
+                password,
+              };
+              dispatch(setUserData(data));
+              handleNavigation('Login');
+            } else {
+              Alert.alert('Please confirm', validateRes.message);
+            }
+          }}
+          style={styles.googleFbIcon}>
+          <Icon name="facebook-square" size={30} color="white" />
+          <View style={styles.submitGoogleFb}>
+            <Text style={styles.signupButton}>Sign Up with Facebook</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>

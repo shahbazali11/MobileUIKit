@@ -23,7 +23,7 @@ const DummyProduct = () => {
   const handleAddData = async () => {
     try {
       const index = list.length;
-      const response = await database().ref(`todo/${index}`).set({
+      await database().ref(`todo/${index}`).set({
         value: inputTextValue,
       });
       setInputTextValue('');
@@ -34,7 +34,7 @@ const DummyProduct = () => {
 
   const handleUpdateData = async () => {
     try {
-      const response = await database()
+      await database()
         .ref(`todo/${selectedCardIndex}`)
         .update({value: inputTextValue});
       setIsUpdateData(false);

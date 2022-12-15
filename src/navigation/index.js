@@ -15,9 +15,12 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import ProfilePost from '../../src/screens/App/ProfilePost/ProfilePost';
 import ProfilePhoto from '../../src/screens/App/ProfilePhoto/ProfilePhoto';
 import Messages from '../../src/screens/App/Messages/Messages';
-import Dummy from '../screens/App/dummy/dummy';
-import DummyProduct from '../screens/App/dummyProduct/dummyProduct';
+import Dummy from '../screens/App/Dummy/Dummy';
+import DummyProduct from '../screens/App/DummyProduct/DummyProduct';
 import BottomNavigator from '../../src/navigation/bottom-navigator/bottom-navigator';
+import AsyncStorageData from '../screens/App/AsyncStorageData/AsyncStorageData';
+import Country from '../screens/App/Country/Country';
+import Maps from '../screens/App/Maps/Maps';
 //
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -36,6 +39,9 @@ const MainNavigation = () => {
         <Stack.Screen name="ProfilePhoto" component={ProfilePhoto} />
         <Stack.Screen name="Dummy" component={Dummy} />
         <Stack.Screen name="DummyProduct" component={DummyProduct} />
+        <Stack.Screen name="AsyncStorageData" component={AsyncStorageData} />
+        <Stack.Screen name="Country" component={Country} />
+        <Stack.Screen name="Maps" component={Maps} />
       </Stack.Navigator>
     </NavigationContainer>
   );
