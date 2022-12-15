@@ -47,23 +47,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#5DB075',
     borderRadius: 100,
   },
-  submitGoogleFb: {
-    height: 50,
-    width: '70%',
-    borderRadius: 100,
-    backgroundColor: '#5DB075',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  googleFbIcon: {
-    backgroundColor: '#5DB075',
-    flexDirection: 'row',
-    borderRadius: 100,
-    marginTop: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   forgot: {
     marginTop: 16,
     alignItems: 'center',
@@ -104,17 +87,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
-  },
-  passwordTextInput: {
-    backgroundColor: '#F6F6F6',
-    flexDirection: 'row',
-    borderRadius: 8,
-    height: 50,
-    marginTop: 16,
-    alignItems: 'center',
-    overflow: 'hidden',
-    borderColor: '#E8E8E8',
-    borderWidth: 1,
   },
 });
 

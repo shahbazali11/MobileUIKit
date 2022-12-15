@@ -1,57 +1,42 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {setProductData} from '../../../redux/actions';
+import {setProductData} from '../../../redux/actions/product-action/product-action';
 
 const Dummy = ({navigation}) => {
-  const {saveData} = useSelector(state => state.product);
-  const dispatch = useDispatch();
+  const data = useSelector(state => state?.product?.saveData);
 
+  const dispatch = useDispatch();
+  function handleNavigation(screenName) {
+    navigation.navigate(screenName);
+  }
   useEffect(() => {
     dispatch(setProductData());
+    data;
   }, []);
-
-  const renderItem = ({item, index}) => {
-    return (
-      <View key={index} style={{padding: 16}}>
-        <View style={{padding: 10, borderWidth: 1, borderRadius: 8}}>
-          <Text>ID: {item?.id}</Text>
-          <Text>Title: {item?.title}</Text>
-          <Text>Body: {item?.body}</Text>
-        </View>
-      </View>
-    );
-  };
 
   return (
     <View style={styles.mainContainer}>
       <FlatList
-        data={saveData}
-        keyExtractor={(item, index) => item + index.toString()}
-        renderItem={renderItem}
+        data={data}
+        renderItem={({item, index}) => {
+          return (
+            <View style={{padding: 16}}>
+              <View style={{padding: 10, borderWidth: 1, borderRadius: 8}}>
+                <Text>ID: {item?.id}</Text>
+                <Text>Title: {item?.title}</Text>
+                <Text>Body: {item?.body}</Text>
+              </View>
+            </View>
+          );
+        }}
       />
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('DummyProduct');
+          handleNavigation('DummyProduct');
         }}>
         <View style={styles.submit}>
-          <Text style={styles.loginButton}>CURD With Firebase</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('AsyncStorageData');
-        }}>
-        <View style={styles.submit}>
-          <Text style={styles.loginButton}>Data with AsyncStorage</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Country');
-        }}>
-        <View style={styles.submit}>
-          <Text style={styles.loginButton}>Country with City</Text>
+          <Text style={styles.LoginButton}>CURD With Firebase</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -71,9 +56,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#5DB075',
     borderRadius: 100,
     marginHorizontal: 16,
-    marginBottom: 10,
   },
-  loginButton: {
+  LoginButton: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
