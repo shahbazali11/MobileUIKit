@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "473218954623",
+    "project_id": "mobileuikit-30e0e",
+    "storage_bucket": "mobileuikit-30e0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473218954623:android:9e06fa528ed6959476d64a",
+        "android_client_info": {
+          "package_name": "com.mobileuikit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473218954623-81r2mv4imfmbe2ubusdvohtotjvgjpna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD1NDd7FlKX5ALcUvwU1xVe3wYZL2ghLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473218954623-81r2mv4imfmbe2ubusdvohtotjvgjpna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

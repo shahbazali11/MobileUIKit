@@ -1,9 +1,18 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const FeedHeader = ({source, head, time, detail}) => {
+  const navigation = useNavigation();
+
+  function handleNavigation(screenName) {
+    navigation.navigate(screenName, {source, head, time, detail});
+  }
+
   return (
-    <View style={styles.check}>
+    <TouchableOpacity
+      style={styles.check}
+      onPress={() => handleNavigation('Contents')}>
       <Image source={source} style={styles.checkImg} />
       <View style={styles.details}>
         <View style={styles.dHeader}>
@@ -14,7 +23,7 @@ const FeedHeader = ({source, head, time, detail}) => {
         </View>
         <Text style={styles.text}>{detail}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -24,7 +33,7 @@ const styles = StyleSheet.create({
   check: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginTop: 30,
+    marginTop: 16,
   },
   checkImg: {
     width: 50,

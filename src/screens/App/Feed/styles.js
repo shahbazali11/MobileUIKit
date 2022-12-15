@@ -3,12 +3,11 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 16,
-    padding: 16,
     backgroundColor: 'white',
   },
   header: {
     marginBottom: 16,
+    marginTop: 16,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
@@ -57,6 +56,15 @@ const styles = StyleSheet.create({
     height: 1,
     width: '100%',
     backgroundColor: '#E8E8E8',
+  },
+  headerText: {
+    color: '#5DB075',
+    fontSize: 16,
+  },
+  headerSText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
 });
 

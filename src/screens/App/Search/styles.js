@@ -58,6 +58,15 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#E8E8E8',
   },
+  headerText: {
+    color: '#5DB075',
+    fontSize: 16,
+  },
+  headerSText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
 });
 
 export default styles;

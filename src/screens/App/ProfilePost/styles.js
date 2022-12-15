@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: 'white',
   },
   head: {
     height: 217,
@@ -26,14 +27,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   profilePic: {
-    height: 158,
-    width: 158,
-    borderWidth: 4,
+    height: 200,
+    width: 200,
     borderColor: 'white',
     borderRadius: 100,
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: -117,
+    marginTop: -130,
   },
   bodyText: {
     marginTop: 16,
@@ -76,6 +76,16 @@ const styles = StyleSheet.create({
   },
   details: {
     flexDirection: 'column',
+  },
+  detailText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  detailHText: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: '600',
   },
 });
 
