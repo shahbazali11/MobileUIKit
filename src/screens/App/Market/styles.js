@@ -3,11 +3,13 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 16,
-    padding: 16,
     backgroundColor: 'white',
   },
+  safeArea: {
+    marginBottom: 20,
+  },
   header: {
+    marginTop: 16,
     marginBottom: 16,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -25,22 +27,31 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   check: {
-    alignItems: 'flex-start',
     marginTop: 16,
   },
   checkImg: {
-    width: 120,
-    height: 120,
+    width: 110,
+    height: 110,
     marginTop: 3,
-    borderRadius: 15,
-  },
-  dHeader: {
-    marginRight: 50,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    borderRadius: 8,
   },
   details: {
-    flexDirection: 'column',
+    width: '80%',
+  },
+  headingText: {
+    fontSize: 24,
+    fontWeight: '500',
+    color: 'black',
+    marginTop: 16,
+  },
+  headerText: {
+    color: '#5DB075',
+    fontSize: 16,
+  },
+  headerSText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
 });
 

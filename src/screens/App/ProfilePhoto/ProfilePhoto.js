@@ -1,53 +1,63 @@
-import {Text, View, TouchableOpacity, Image, FlatList} from 'react-native';
 import React from 'react';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import styles from './styles';
 import SwitchSelector from 'react-native-switch-selector';
+//
+import {AuthHeader} from '../../../components';
+
 const options = [
   {label: 'Posts', value: 'post'},
   {label: 'Photo', value: 'photo'},
 ];
 
-const ProfilePhoto = () => {
+const ProfilePhoto = ({navigation}) => {
   return (
     <View style={styles.main}>
       <View style={styles.head}>
-        <View style={styles.hearder}>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Settings</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerpProfileText}>Profile</Text>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Logout</Text>
-          </TouchableOpacity>
-        </View>
+        <AuthHeader
+          isLeftText
+          leftTitle={'Settings'}
+          mainTitle={'Profile'}
+          rightTitle={'Login'}
+          onPressLeft={() => navigation.replace('Login')}
+          leftRightTitleStyle={{color: 'white'}}
+          mainStyle={{color: 'white'}}
+        />
       </View>
       <View>
         <Image
-          source={require('../../../assets/BlogImage.png')}
+          source={require('../../../assets/Ellipse.png')}
           style={styles.profilePic}
         />
       </View>
       <View style={styles.bodyText}>
-        <Text style={{color: 'black', fontSize: 30, fontWeight: '600'}}>
-          Victoria Robertson
-        </Text>
-        <Text style={{color: 'black', fontSize: 16, fontWeight: '600'}}>
-          A mantra goes here
-        </Text>
+        <Text style={styles.detailHText}>Victoria Robertson</Text>
+        <Text style={styles.detailText}>A mantra goes here</Text>
       </View>
       <View style={styles.switch}>
         <SwitchSelector
+          buttonColor="#FFFFFF"
+          selectedColor="#5DB075"
+          borderColor="#F6F6F6"
+          textColor="#BDBDBD"
+          backgroundColor="#F6F6F6"
+          fontSize={16}
+          fontWeight="600"
           options={options}
           initial={0}
-          onPress={value => console.log(`Call onPress with value: ${value}`)}
+          onPress={() => navigation.navigate('ProfilePost')}
         />
-        {/* <Text>Posts</Text>
-        <Text>Photos</Text>
-        <View style={styles.switchSelector}></View> */}
       </View>
       <View>
         <Image
-          source={require('../../../assets/BlogImage.png')}
+          source={require('../../../assets/Ellipse.png')}
           style={styles.profileImage}
         />
       </View>
