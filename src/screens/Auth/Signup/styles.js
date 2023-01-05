@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginTop: 30,
+    marginBottom: 33,
   },
   text: {
     color: '#666666',

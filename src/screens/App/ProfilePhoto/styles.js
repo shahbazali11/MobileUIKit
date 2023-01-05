@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   main: {
@@ -8,6 +10,8 @@ const styles = StyleSheet.create({
   head: {
     height: 217,
     backgroundColor: '#5DB075',
+    paddingHorizontal: (width / 100) * 5,
+    paddingTop: (width / 100) * 5,
   },
   hearder: {
     marginTop: 16,

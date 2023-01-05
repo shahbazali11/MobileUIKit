@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity, TextInput, FlatList} from 'react-native';
 import styles from './styles';
+//
+import {AppInput, AuthHeader} from '../../../components';
 
 import {FeedHeader} from '../../../components/FeedHeader/FeedHeader';
 import Contents from '../Contents/Contents';
@@ -111,23 +113,17 @@ const Feed = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{padding: 16}}>
-        <View style={styles.header}>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Back</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerSText}>Feed</Text>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Filter</Text>
-          </TouchableOpacity>
-        </View>
-        <TextInput
-          style={styles.inputcontainer}
-          value={search}
-          //onChangeText={setSearch}
-          onChangeText={text => searchFilterFunction(text)}
-          underlineColorAndroid="transparent"
-          placeholder="Search"
-          keyboardType="ascii-capable"
+        <AuthHeader
+          isLeftText
+          leftTitle={'Back'}
+          mainTitle={'Feed'}
+          rightTitle={'Filter'}
+        />
+        <AppInput
+          inputcontainerStyle={{borderRadius: 50}}
+          onTextChange={text => searchFilterFunction(text)}
+          textValue={search}
+          placeholderName={'Search'}
         />
         <FlatList
           // data={data}

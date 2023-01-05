@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  safeArea: {
+    marginBottom: 20,
+  },
   header: {
     marginTop: 16,
     marginBottom: 16,

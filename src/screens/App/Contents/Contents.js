@@ -1,7 +1,8 @@
+import React, {useState} from 'react';
 import {Text, View, TouchableOpacity, TextInput, Image} from 'react-native';
 import styles from './styles';
-
-import React, {useState} from 'react';
+//
+import {AuthHeader, AppInput} from '../../../components';
 
 const Contents = ({route, navigation}) => {
   const [search, setSearch] = useState('');
@@ -10,22 +11,17 @@ const Contents = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{padding: 16}}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate('Feed')}>
-            <Text style={styles.headerText}>Back</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerSText}>Contents</Text>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Filter</Text>
-          </TouchableOpacity>
-        </View>
-        <TextInput
-          style={styles.inputcontainer}
-          onChangeText={setSearch}
-          value={search}
-          underlineColorAndroid="transparent"
-          placeholder="Search"
-          keyboardType="ascii-capable"
+        <AuthHeader
+          isLeftText
+          leftTitle={'Back'}
+          mainTitle={'Contents'}
+          rightTitle={'Filter'}
+        />
+        <AppInput
+          inputcontainerStyle={{borderRadius: 50}}
+          onTextChange={text => setSearch(text)}
+          textValue={search}
+          placeholderName={'Search'}
         />
         <View style={styles.cont}>
           <Image source={source} style={styles.contentBox} />

@@ -1,7 +1,15 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {setProductData} from '../../../redux/actions';
+import {setProductData} from '../../../redux/actions/product-action/product-action';
+import {SubmitButton} from '../../../components';
 
 const Dummy = ({navigation}) => {
   const {saveData} = useSelector(state => state.product);
@@ -30,30 +38,26 @@ const Dummy = ({navigation}) => {
         keyExtractor={(item, index) => item + index.toString()}
         renderItem={renderItem}
       />
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('DummyProduct');
-        }}>
-        <View style={styles.submit}>
-          <Text style={styles.loginButton}>CURD With Firebase</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('AsyncStorageData');
-        }}>
-        <View style={styles.submit}>
-          <Text style={styles.loginButton}>Data with AsyncStorage</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Country');
-        }}>
-        <View style={styles.submit}>
-          <Text style={styles.loginButton}>Country with City</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={{marginHorizontal: 16}}>
+        <SubmitButton
+          buttonText={'CURD With Firebase'}
+          onPressButton={() => {
+            navigation.navigate('DummyProduct');
+          }}
+        />
+        <SubmitButton
+          buttonText={'Data with AsyncStorage'}
+          onPressButton={() => {
+            navigation.navigate('AsyncStorageData');
+          }}
+        />
+        <SubmitButton
+          buttonText={'Country with City'}
+          onPressButton={() => {
+            navigation.navigate('Country');
+          }}
+        />
+      </View>
     </View>
   );
 };

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginHorizontal: 16,
     borderRadius: 8,
-    backgroundColor: 'White',
+    backgroundColor: 'red',
   },
   warningText: {
     padding: 16,

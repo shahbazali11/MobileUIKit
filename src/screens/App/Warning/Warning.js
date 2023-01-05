@@ -4,8 +4,10 @@ import styles from './styles';
 
 const Warning = () => {
   const [name, setName] = useState('');
+
   const [submitted, setSubmitted] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
+
   const onPressHandler = () => {
     if (true > 3) {
       setSubmitted(!submitted);
@@ -21,7 +23,7 @@ const Warning = () => {
         collapsable
         visible={showWarning}
         animationType="slide"
-        statusBarTranslucent={true}
+        statusBarTranslucent={false}
         onRequestClose={() => setShowWarning(false)}>
         <View style={styles.warning}>
           <Text style={styles.header}>Congratulations!</Text>

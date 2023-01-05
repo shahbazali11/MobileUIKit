@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AppInput, SubmitButton} from '../../../components';
+
 const AsyncStorageData = () => {
   const [inputBoxValue, setInputBoxValue] = useState('');
   const [storeDataList, setStoreDataList] = useState('');
@@ -35,22 +37,26 @@ const AsyncStorageData = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.inputBox}
-        value={inputBoxValue}
-        placeholder="Enter data"
-        onChangeText={value => {
+      <AppInput
+        textValue={inputBoxValue}
+        placeholderName={'Enter Data'}
+        onTextChange={value => {
           setInputBoxValue(value);
         }}
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.addButton}
         onPress={() => {
           addItemToList();
         }}>
         <Text style={styles.button}>Add</Text>
-      </TouchableOpacity>
-
+      </TouchableOpacity> */}
+      <SubmitButton
+        buttonText={'Add'}
+        onPressButton={() => {
+          addItemToList();
+        }}
+      />
       <Text>Your Data is {storeDataList}</Text>
     </View>
   );
@@ -63,16 +69,9 @@ export default AsyncStorageData;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  inputBox: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: 10,
-    marginHorizontal: 8,
-    borderRadius: 8,
+    marginHorizontal: 16,
   },
   addButton: {
-    width: width - 20,
     backgroundColor: 'blue',
     marginHorizontal: 10,
     padding: 10,

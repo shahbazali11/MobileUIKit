@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -50,6 +52,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#5DB075',
     borderRadius: 100,
   },
+  GoogleFbSubmit: {
+    height: 50,
+    marginTop: 16,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#5DB075',
+    borderRadius: 100,
+    flexDirection: 'row',
+  },
   forgot: {
     marginTop: 16,
     alignItems: 'center',
@@ -59,6 +70,9 @@ const styles = StyleSheet.create({
     color: '#5DB075',
     fontSize: 16,
     fontWeight: '600',
+  },
+  empty: {
+    height: (width / 100) * 40,
   },
   headerText: {
     color: 'black',

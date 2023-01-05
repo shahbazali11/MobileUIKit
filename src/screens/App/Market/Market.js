@@ -6,9 +6,12 @@ import {
   FlatList,
   View,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
+//
+import {AuthHeader, AppInput} from '../../../components';
 
 const Market = () => {
   const [search, setSearch] = useState('');
@@ -96,32 +99,25 @@ const Market = () => {
   );
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={{padding: 16}}>
-          <View style={styles.header}>
-            <TouchableOpacity>
-              <Text style={styles.headerText}>Back</Text>
-            </TouchableOpacity>
-            <Text style={styles.headerSText}>Market</Text>
-            <TouchableOpacity>
-              <Text style={styles.headerText}>Filter</Text>
-            </TouchableOpacity>
-          </View>
+    <SafeAreaView style={styles.container}>
+      <View style={{padding: 16}}>
+        <AuthHeader
+          isLeftText
+          leftTitle={'Back'}
+          mainTitle={'Market'}
+          rightTitle={'Filter'}
+        />
 
-          <TextInput
-            style={styles.inputcontainer}
-            onChangeText={setSearch}
-            value={search}
-            underlineColorAndroid="transparent"
-            placeholder="Search"
-            keyboardType="ascii-capable"
-          />
+        <AppInput
+          inputcontainerStyle={{borderRadius: 50}}
+          onTextChange={text => setSearch(text)}
+          textValue={search}
+          placeholderName={'Search'}
+        />
+        <ScrollView style={styles.safeArea}>
           <Text style={styles.headingText}>Hot deals</Text>
           <FlatList
             horizontal
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
             data={hotDeals}
             renderItem={renderHeaderItem}
             keyExtractor={(item, index) => item + index.toString()}
@@ -129,8 +125,6 @@ const Market = () => {
           <Text style={styles.headingText}>Trending</Text>
           <FlatList
             horizontal
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
             data={trending}
             renderItem={renderHeaderItem}
             keyExtractor={(item, index) => item + index.toString()}
@@ -138,15 +132,13 @@ const Market = () => {
           <Text style={styles.headingText}>Deals</Text>
           <FlatList
             horizontal
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
             data={deals}
             renderItem={renderHeaderItem}
             keyExtractor={(item, index) => item + index.toString()}
           />
-        </View>
+        </ScrollView>
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 

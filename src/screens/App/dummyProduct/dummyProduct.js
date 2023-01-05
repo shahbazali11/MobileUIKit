@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import database from '@react-native-firebase/database';
+import {SubmitButton, AppInput} from '../../../components';
 
 const DummyProduct = () => {
   const [inputTextValue, setInputTextValue] = useState(null);
@@ -91,62 +92,61 @@ const DummyProduct = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.head}>To Do App</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter Any Value"
-        value={inputTextValue}
-        onChangeText={value => {
-          setInputTextValue(value);
-        }}
-      />
-      {!isUpdateData ? (
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            if (inputTextValue <= 0) {
-              alert('Please Enter Something');
-            } else {
-              handleAddData();
-            }
-          }}>
-          <Text style={styles.text}>Add</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            if (inputTextValue <= 0) {
-              alert('Please Enter Something');
-            } else {
-              handleUpdateData();
-            }
-          }}>
-          <Text style={styles.text}>Update</Text>
-        </TouchableOpacity>
-      )}
-      <View style={styles.textCard}>
-        <Text style={styles.head}>TO Do List</Text>
-        <FlatList
-          data={list}
-          renderItem={item => {
-            const cardIndex = item.index;
-            if (item.item !== null) {
-              return (
-                <TouchableOpacity
-                  style={styles.card}
-                  onPress={() => {
-                    handleCardPress(cardIndex, item.item.value);
-                  }}
-                  onLongPress={() =>
-                    handleCardLongPress(cardIndex, item.item.value)
-                  }>
-                  <Text>{item.item.value}</Text>
-                </TouchableOpacity>
-              );
-            }
+      <View style={styles.container}>
+        <Text style={styles.head}>To Do App</Text>
+        <AppInput
+          placeholderName={'Enter Any Value'}
+          textValue={inputTextValue}
+          onTextChange={value => {
+            setInputTextValue(value);
           }}
         />
+        {!isUpdateData ? (
+          <SubmitButton
+            onPressButton={() => {
+              if (inputTextValue <= 0) {
+                alert('Please Enter Something');
+              } else {
+                handleAddData();
+              }
+            }}
+            buttonText={'Add'}
+          />
+        ) : (
+          <SubmitButton
+            onPressButton={() => {
+              if (inputTextValue <= 0) {
+                alert('Please Enter Something');
+              } else {
+                handleUpdateData();
+              }
+            }}
+            buttonText={'Update'}
+          />
+        )}
+        <View style={styles.textCard}>
+          <Text style={styles.head}>TO Do List</Text>
+          <FlatList
+            data={list}
+            renderItem={item => {
+              const cardIndex = item.index;
+              if (item.item !== null) {
+                return (
+                  <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => {
+                      handleCardPress(cardIndex, item.item.value);
+                    }}
+                    onLongPress={() =>
+                      handleCardLongPress(cardIndex, item.item.value)
+                    }>
+                    <Text>{item.item.value}</Text>
+                  </TouchableOpacity>
+                );
+              }
+            }}
+          />
+        </View>
       </View>
     </View>
   );
@@ -157,33 +157,15 @@ export default DummyProduct;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    alignItems: 'center',
   },
-  input: {
-    padding: 10,
-    width: '90%',
-    borderWidth: 2,
-    borderRadius: 20,
-    marginVertical: 10,
+  container: {
+    marginHorizontal: 16,
   },
   head: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'black',
     marginTop: 20,
-  },
-  addButton: {
-    backgroundColor: 'blue',
-    width: '90%',
-    padding: 10,
-    alignItems: 'center',
-    borderRadius: 80,
-    marginBottom: 10,
-  },
-  text: {
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 16,
   },
   card: {
     backgroundColor: '#dcdcdc',

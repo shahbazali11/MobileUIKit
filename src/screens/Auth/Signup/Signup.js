@@ -8,11 +8,16 @@ import {
   Alert,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
+//
+import {AuthHeader, AppInput, SubmitButton} from '../../../components';
 
 //firebase
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+//facebook signin
+import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 
 //redux
 import {useDispatch} from 'react-redux';
@@ -60,13 +65,30 @@ const Signup = ({navigation}) => {
         message: 'Password should contain atleast 8 characters',
         status: false,
       };
+    } else if (isSelected === false) {
+      response = {
+        message: 'Please check the promotional information',
+        status: false,
+      };
     } else {
       response = {message: '', status: true};
     }
     return response;
   };
 
-  //firebase
+  const handleSignup = async () => {
+    try {
+      const isUserSignup = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      console.log('User Credientials: ', isUserSignup);
+    } catch (err) {
+      console.log('Error for signup: ', err);
+    }
+  };
+
+  //firebase google signin
   const onGoogleButtonPress = async () => {
     // Check if your device supports Google Play
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
@@ -80,133 +102,132 @@ const Signup = ({navigation}) => {
     return auth().signInWithCredential(googleCredential);
   };
 
+  //firebase facebook signin
+  facebookLogin = async () => {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  };
+
   return (
     <View style={styles.container}>
       <View style={{padding: 16}}>
-        <View style={styles.header}>
-          <TouchableOpacity>
-            <Image
-              source={require('../../../assets/cross.png')}
-              style={styles.crossImg}
-              resizeMode={'contain'}
+        <AuthHeader
+          isLeftImage
+          mainTitle={'Sign In'}
+          rightTitle={'Login'}
+          onPressRight={() => handleNavigation('Login')}
+        />
+        <KeyboardAwareScrollView>
+          <AppInput
+            onTextChange={text => setName(text)}
+            textValue={name}
+            placeholderName={'Name'}
+          />
+          <AppInput
+            onTextChange={text => setEmail(text)}
+            textValue={email}
+            placeholderName={'Email'}
+          />
+          <View style={styles.passwordTextInput}>
+            <AppInput
+              onTextChange={text => setPassword(text)}
+              textValue={password}
+              placeholderName={'Password'}
+              containerStyle={{width: '80%'}}
+              secureText
             />
-          </TouchableOpacity>
-          <Text style={styles.headerSText}>Sign Up</Text>
-          <TouchableOpacity onPress={() => handleNavigation('Login')}>
-            <Text style={styles.headerText}>Login</Text>
-          </TouchableOpacity>
-        </View>
-
-        <TextInput
-          style={styles.inputcontainer}
-          onChangeText={text => setName(text)}
-          value={name}
-          placeholder="Name"
-          keyboardType="ascii-capable"
-        />
-        <TextInput
-          style={styles.inputcontainer}
-          onChangeText={text => setEmail(text)}
-          value={email}
-          placeholder="Email"
-          keyboardType="ascii-capable"
-        />
-        <View style={styles.passwordTextInput}>
-          <TextInput
-            style={styles.inputText}
-            onChangeText={text => setPassword(text)}
-            value={password}
-            secureTextEntry={secureTextEntry}
-            placeholder="Password"
+            <TouchableOpacity
+              style={styles.showPassword}
+              onPress={() => {
+                setSecureTextEntry(!secureTextEntry);
+              }}>
+              <Text style={styles.button}>
+                {secureTextEntry ? 'Show' : 'Hide'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.check}>
+            <CheckBox
+              value={isSelected}
+              onValueChange={() => setSelection(!isSelected)}
+            />
+            <Text style={styles.text}>
+              I would like to receive your newsletter and other promotional
+              information.
+            </Text>
+          </View>
+          <SubmitButton
+            buttonText={'Sign Up'}
+            onPressButton={() => {
+              const validateRes = validateForms();
+              if (validateRes.status) {
+                const data = {
+                  name,
+                  email,
+                  password,
+                };
+                handleSignup();
+                dispatch(setUserData(data));
+                handleNavigation('Login');
+              } else {
+                Alert.alert('Please confirm', validateRes.message);
+              }
+            }}
+          />
+          <SubmitButton
+            onPressButton={() => {
+              onGoogleButtonPress().then(response => {
+                console.log('Google Response: ', response.user);
+                dispatch(setUserData(response.user));
+                handleNavigation('Login');
+              });
+            }}
+            isLeftGoogleIcon
+            buttonText={'Sign Up with Google'}
+            isRightText
+          />
+          <SubmitButton
+            onPressButton={() => {
+              facebookLogin().then(response => {
+                console.log(response.user);
+                dispatch(setUserData(response.user));
+                handleNavigation('Login');
+              });
+            }}
+            isLeftFacebookIcon
+            buttonText={'Sign Up with Facebook'}
+            isRightText
           />
           <TouchableOpacity
-            style={styles.showPassword}
+            style={styles.forgot}
             onPress={() => {
-              setSecureTextEntry(!secureTextEntry);
+              handleNavigation('VerifyOTP');
             }}>
-            <Text style={styles.button}>
-              {secureTextEntry ? 'Show' : 'Hide'}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.check}>
-          <CheckBox value={isSelected} onValueChange={setSelection} />
-          <Text style={styles.text}>
-            I would like to receive your newsletter and other promotional
-            information.
-          </Text>
-        </View>
-        <TouchableOpacity
-          onPress={() => {
-            const validateRes = validateForms();
-            if (validateRes.status) {
-              const data = {
-                name,
-                email,
-                password,
-              };
-              dispatch(setUserData(data));
-              handleNavigation('Login');
-            } else {
-              Alert.alert('Please confirm', validateRes.message);
-            }
-          }}>
-          <View style={styles.submit}>
-            <Text style={styles.signupButton}>Sign Up</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            onGoogleButtonPress().then(response => {
-              console.log(response.user);
-              dispatch(setUserData(response.user));
-              handleNavigation('Login');
-            });
-            const validateRes = validateForms();
-            if (validateRes.status) {
-              const data = {
-                name,
-                email,
-                password,
-              };
-              dispatch(setUserData(data));
-              handleNavigation('Login');
-            } else {
-              Alert.alert('Please confirm', validateRes.message);
-            }
-          }}
-          style={styles.googleFbIcon}>
-          <Icon name="google" size={30} color="white" />
-          <View style={styles.submitGoogleFb}>
-            <Text style={styles.signupButton}>Sign Up with Google</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            const validateRes = validateForms();
-            if (validateRes.status) {
-              const data = {
-                name,
-                email,
-                password,
-              };
-              dispatch(setUserData(data));
-              handleNavigation('Login');
-            } else {
-              Alert.alert('Please confirm', validateRes.message);
-            }
-          }}
-          style={styles.googleFbIcon}>
-          <Icon name="facebook-square" size={30} color="white" />
-          <View style={styles.submitGoogleFb}>
-            <Text style={styles.signupButton}>Sign Up with Facebook</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.forgot}>
             <Text style={styles.button}>Forgot your password?</Text>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </KeyboardAwareScrollView>
       </View>
     </View>
   );

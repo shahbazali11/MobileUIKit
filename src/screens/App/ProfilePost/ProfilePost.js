@@ -2,9 +2,9 @@ import {Text, View, TouchableOpacity, Image, FlatList} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import SwitchSelector from 'react-native-switch-selector';
-
 //
 import {useSelector} from 'react-redux';
+import {AuthHeader} from '../../../components';
 
 const options = [
   {label: 'Posts', value: 'post'},
@@ -51,54 +51,53 @@ const ProfilePost = ({navigation}) => {
   return (
     <View style={styles.main}>
       <View style={styles.head}>
-        <View style={styles.hearder}>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Settings</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerpProfileText}>Profile</Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.replace('Login');
-            }}>
-            <Text style={styles.headerText}>Logout</Text>
-          </TouchableOpacity>
+        <AuthHeader
+          isLeftText
+          leftTitle={'Settings'}
+          mainTitle={'Profile'}
+          rightTitle={'Login'}
+          onPressLeft={() => navigation.replace('Login')}
+          leftRightTitleStyle={{color: 'white'}}
+          mainStyle={{color: 'white'}}
+        />
+      </View>
+      <View style={{padding: 16}}>
+        <View>
+          <Image
+            source={require('../../../assets/Ellipse.png')}
+            style={styles.profilePic}
+          />
         </View>
-      </View>
-      <View>
-        <Image
-          source={require('../../../assets/Ellipse.png')}
-          style={styles.profilePic}
+        <View style={styles.bodyText}>
+          <Text style={styles.detailHText}>Victoria Robertson</Text>
+          <Text style={styles.detailText}>A mantra goes here</Text>
+        </View>
+        <View style={styles.switch}>
+          <SwitchSelector
+            buttonColor="white"
+            selectedColor="#5DB075"
+            borderColor="#F6F6F6"
+            textColor="#BDBDBD"
+            backgroundColor="#F6F6F6"
+            fontSize={16}
+            fontWeight="600"
+            options={options}
+            initial={0}
+            onPress={() => navigation.navigate('ProfilePhoto')}
+          />
+        </View>
+        <FlatList
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          data={hotDeals}
+          renderItem={renderHeaderItem}
+          keyExtractor={(item, index) => item + index.toString()}
         />
-      </View>
-      <View style={styles.bodyText}>
-        <Text style={styles.detailHText}>Victoria Robertson</Text>
-        <Text style={styles.detailText}>A mantra goes here</Text>
-      </View>
-      <View style={styles.switch}>
-        <SwitchSelector
-          buttonColor="white"
-          selectedColor="#5DB075"
-          borderColor="#F6F6F6"
-          textColor="#BDBDBD"
-          backgroundColor="#F6F6F6"
-          fontSize={16}
-          fontWeight="600"
-          options={options}
-          initial={0}
-          onPress={() => navigation.navigate('ProfilePhoto')}
-        />
-      </View>
-      <FlatList
-        pagingEnabled={true}
-        showsHorizontalScrollIndicator={false}
-        data={hotDeals}
-        renderItem={renderHeaderItem}
-        keyExtractor={(item, index) => item + index.toString()}
-      />
-      <View>
-        <Text>{data.name}</Text>
-        <Text>{data.email}</Text>
-        <Text>{data.password}</Text>
+        <View>
+          <Text>{data.name}</Text>
+          <Text>{data.email}</Text>
+          <Text>{data.password}</Text>
+        </View>
       </View>
     </View>
   );

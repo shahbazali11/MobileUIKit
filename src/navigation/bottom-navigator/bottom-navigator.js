@@ -5,7 +5,9 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Calender from '../../screens/App/Calender/Calender';
 
+import Warning from '../../screens/App/Warning/Warning';
 import ProfilePost from '../../screens/App/ProfilePost/ProfilePost';
 import Expenses from '../../screens/App/Expenses/Expenses';
 import Search from '../../screens/App/Search/Search';
@@ -13,6 +15,7 @@ import Feed from '../../screens/App/Feed/Feed';
 import Market from '../../screens/App/Market/Market';
 
 import Signup from '../../screens/Auth/Signup/Signup';
+import Contents from '../../screens/App/Contents/Contents';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,8 +45,8 @@ export default function BottomNavigator() {
         }}
       />
       <Tab.Screen
-        name="Expenses"
-        component={Expenses}
+        name="Feed"
+        component={Feed}
         options={{
           tabBarIcon: ({color}) => {
             return <AntDesign name="barchart" size={30} color={color} />;

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MobileUIKit</string>
+
+    //facebook loginin
+    <string name="facebook_app_id">941844446732852</string>
+    <string name="fb_login_protocol_scheme">fb941844446732852</string>
+    <string name="facebook_client_token">fda78acbf58ad64dcff01adc159d8276</string>
    
 </resources>

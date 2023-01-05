@@ -5,9 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 const FeedHeader = ({source, head, time, detail}) => {
   const navigation = useNavigation();
 
-  function handleNavigation(screenName) {
+  const handleNavigation = screenName => {
     navigation.navigate(screenName, {source, head, time, detail});
-  }
+  };
 
   return (
     <TouchableOpacity

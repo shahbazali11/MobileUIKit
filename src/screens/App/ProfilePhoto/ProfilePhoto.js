@@ -1,7 +1,16 @@
-import {Text, View, TouchableOpacity, Image, FlatList} from 'react-native';
 import React from 'react';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import styles from './styles';
 import SwitchSelector from 'react-native-switch-selector';
+//
+import {AuthHeader} from '../../../components';
 
 const options = [
   {label: 'Posts', value: 'post'},
@@ -12,21 +21,15 @@ const ProfilePhoto = ({navigation}) => {
   return (
     <View style={styles.main}>
       <View style={styles.head}>
-        <View style={styles.hearder}>
-          <TouchableOpacity>
-            <Text style={styles.headerText}>Settings</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerpProfileText}>Profile</Text>
-          <TouchableOpacity>
-            <Text
-              style={styles.headerText}
-              onPress={() => {
-                navigation.replace('Login');
-              }}>
-              Logout
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <AuthHeader
+          isLeftText
+          leftTitle={'Settings'}
+          mainTitle={'Profile'}
+          rightTitle={'Login'}
+          onPressLeft={() => navigation.replace('Login')}
+          leftRightTitleStyle={{color: 'white'}}
+          mainStyle={{color: 'white'}}
+        />
       </View>
       <View>
         <Image
